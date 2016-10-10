@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>ULTRA SkySiege : Pokket</title>
+	<script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.js"></script>
+	<script src="src/Boot.js"></script>
+	<script src="src/Preloader.js"></script>
+	<script src="src/MainMenu.js"></script>
+	<script src="src/BaseObjects.js"></script>
+	<script src="src/Mecha.js"></script>
+	<script src="src/Enemies.js"></script>
+	<script src="src/Game.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+	document.onkeydown = cancelArrowKeys;
+     function cancelArrowKeys(e) {
+         try {
+             var e = window.event || e;
+             var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+
+             if (key == 37 || key == 38 || key == 39 || key == 40 || key == 13) {
+                 event.returnValue = false;
+            }
+        }
+         catch (Exception) {
+             return false;
+         }
+     }
+
+	window.onload = function() {
+		var game = new Phaser.Game(160, 144, Phaser.CANVAS, '', null, false, false);
+		
+		game.state.add('Boot', BasicGame.Boot);
+		game.state.add('Preloader', BasicGame.Preloader);
+		game.state.add('MainMenu', BasicGame.MainMenu);
+		
+		game.state.start('Boot');
+	}
+</script>
+
+</body>
+</html>
